@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Contact Page</title>
+	<meta name="description" content="This is website allows you to create contact card information">
+	<link rel="stylesheet" type="text/css" href="contact_page.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('form').submit(function(){
+				var name = $('#first_name').val() + " " + $('#last_name').val();
+				var description = $('#description').val();
+				$('#right-container').append('<div data-description="' + description + '"class="box"><h1>' + name + '</h1><p id="click-descrip">Click for description!</p></div>');
+				$('.name_box, #description').val('');
+				return false;
+			});
+			$('#right-container').on('click', '.box', function() {
+				var description = $(this).attr('data-description');
+				$(this).html('<p class="des">' + description + '<p>');
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="left-container">
+			<form>
+				<label>First Name: <input id="first_name" class="name_box" type="text" name="first_name"></label>
+				<label>Last Name: <input id="last_name" class="name_box" type="text" name="last_name"></label>
+				<label>Description: <textarea id="description" name="description" placeholder="Enter description:"></textarea></label>
+				<input type="submit" value="Add User">
+			</form>
+		</div>
+		<div id="right-container">
+		</div>
+	</div>
+</body>
+</html>
